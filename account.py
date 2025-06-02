@@ -16,6 +16,8 @@ class Account:
             return f"Confirmed, you have received {amount} , new balance is {self.balance}"
         else:
             return "Deposit amount must be positive"
+        #if amount < 0:
+        #return "Invalid amount"
             
  #Withdraw: method to withdraw funds, store the withdrawal and return a message with the new balance to the customer. An account cannot be overdrawn. 
     def withdraw(self, amount):
@@ -39,22 +41,42 @@ class Account:
              return f"Transfer {amount} to this {recipient.account_number} account"
         else:
             return "Not enough funds"
+    # if amount < 0:
+    # return "Invalid amount"
+    # if not an instance (recipient, Account):
+    # return "Target amount must be an instance of a class"
+    # if amount > self.get_balance():
+    # return "Insufficient funds"
+    # 
 
 # Request Loan: Method to request a loan amount.
     def request_loan(self, amount):
-        if amount >= 0:
+        if freeze_account = True:
+            return "Account is frozen"
+
+        limit = self.self.calculate_loan_limit
+        if amount > self.calculate_loan_limit():
+            return f"You are not qualified to borrow {amount}. Your loan limit is {limit}"
+        if amount > 0:
             self.loan += amount
             self.deposits.append(amount)
             return f"Loan of {amount} was successful.Your new balance is {self.get_balance()}"
         else:
             return "You are not elligible for a loan"
-
+#Calculating loan limit
+    def calculate_loan_limit(self):
+        total_deposits = Sum(self.deposits)
+        return total_deposits // 3 
 # Repay Loan: Method to repay a loan with a given amount.
     def repay_loan(self,amount):
         if amount > 0:
             self.loan -= amount
             self.balance -= amount
             return f"You've repaid  {amount}, your remaining debt is {self.loan}"
+
+# if amount > self.loan_balance:
+# diff = amount - self.loan_balance
+# self.deposit(amount) 
 
 # View Account Details: Method to display the account owner's details and current balance.
     def view_account_details(self): 
@@ -105,6 +127,7 @@ class Account:
         self.minimum_balance = 0
         return "All balances have been set to zero and all accountss are closed"
 
-       
+
+
 
 
